@@ -5,5 +5,9 @@
   "main": "In this repository contains frontend, backend and mobile for a parking system requested by my mentor",
   "repository": "https://github.com/vinibispo/parking",
   "author": "Vinícius Bispo",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sequelize": "^5.21.5"
+  }
 }
