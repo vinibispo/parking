@@ -1,0 +1,9 @@
+{
+  "name": "parking",
+  "version": "1.0.0",
+  "description": "In this repository contains frontend, backend and mobile for a parking system requested by my mentor",
+  "main": "In this repository contains frontend, backend and mobile for a parking system requested by my mentor",
+  "repository": "https://github.com/vinibispo/parking",
+  "author": "Vinícius Bispo",
+  "license": "MIT"
+}
