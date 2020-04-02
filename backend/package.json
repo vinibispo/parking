@@ -9,5 +9,13 @@
   "dependencies": {
     "express": "^4.17.1",
     "sequelize": "^5.21.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/sequelize": "^4.28.8",
+    "dotenv": "^8.2.0",
+    "jest": "^25.2.6",
+    "sequelize-cli": "^5.5.1",
+    "supertest": "^4.0.2"
   }
 }
