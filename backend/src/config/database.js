@@ -10,6 +10,8 @@ module.exports = {
   operatorAliases: false,
   logging: false,
   define:{
-    timestamps: true
-  }
+    timestamps: true,
+    underscored: true,
+    underscoredAll: true
+  },
 }

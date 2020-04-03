@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('cars', {
       id:{
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true
@@ -19,11 +19,11 @@ module.exports = {
         defaultValue: 200,
         allowNull: false
       },
-      createdAt:{
+      created_at:{
         type: Sequelize.DATE,
         allowNull: false
       },
-      updatedAt:{
+      updated_at:{
         type: Sequelize.DATE,
         allowNull: false
       }
