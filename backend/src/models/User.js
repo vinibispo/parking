@@ -1,6 +1,7 @@
 
 module.exports = (sequelize, DataTypes)=>{
-    sequelize.define('User', {
+    const Car = sequelize.define('Car', {
         board: DataTypes.STRING
     })
+    return Car
 }

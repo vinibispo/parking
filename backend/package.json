@@ -17,9 +17,14 @@
     "dotenv": "^8.2.0",
     "jest": "^25.2.6",
     "sequelize-cli": "^5.5.1",
+    "sqlite3": "^4.1.1",
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "jest"
+    "pretest": "NODE_ENV=test sequelize db:migrate",
+    "test": "NODE_ENV=test jest",
+    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
+    "dev": "nodemon src/server.js --ignore __tests__",
+    "start": "node src/server.js"
   }
 }
