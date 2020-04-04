@@ -1,12 +1,11 @@
 const supertest = require('supertest')
 const app = require('../../src/app')
 const {Car} = require('../../src/models/')
-const truncate = require('../utils/truncate')
 const request = supertest(app)
 
 describe('Authentication', ()=>{
     beforeEach(async()=>{
-        await truncate()
+       await Car.truncate({where: {}, truncate: true})
     })
     it('should be able to register a car', async ()=>{
         const response = await request.post('/car').send({
@@ -16,7 +15,7 @@ describe('Authentication', ()=>{
     })
     it('should be able to register a car and recieve token', async ()=>{
         const response = await request.post('/car').send({
-            board: "CRE-4898", password: "123456"
+            board: "CER-4898", password: "123456"
           })
           expect(response.body).toHaveProperty('token')
           
@@ -27,7 +26,7 @@ describe('Authentication', ()=>{
     })
     it('should be able to login when user has valid credentials', async ()=>{
         const response = await request.post('/car/login').set('token', 'token').send({
-            board: "CRE-4898",
+            board: "REC-4898",
             password: "12345"
         })
         expect(response.status).toBe(200)

@@ -17,6 +17,6 @@ routes.post('/car/login', celebrate({
     [Segments.HEADERS]: Joi.object({
         token: Joi.string().required()
     }).unknown()
-}))
+}), CarController.login)
 
 module.exports = routes

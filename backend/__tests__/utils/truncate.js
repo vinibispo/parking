@@ -1,7 +1,5 @@
-const {sequelize} = require('../../src/models')
-
-module.exports = ()=>{
-    return Promise.all(Object.keys(sequelize.models).map(key=>{
-        return sequelize.models[key].destroy({truncate: true, force: true})
-    }))
+const {Car} = require('../../src/models')
+const {map} = require('lodash')
+module.exports = async ()=>{
+    return await Car.destroy({where:{}, truncate: true})
 }
