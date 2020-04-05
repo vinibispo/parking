@@ -1,5 +1,4 @@
 const {Car} = require('../models')
-const {promisify} = require('util')
 const jwt = require('jsonwebtoken')
 module.exports = {
     create: async (req, res)=>{
@@ -12,13 +11,20 @@ module.exports = {
     },
     login: async (req, res)=>{
         const {board, password} = req.body
-        const {token} = req.headers
-        try{
-            await promisify(jwt.verify)(token, process.env.SECRET)
-            return res.json("Logado!")
-        }
-        catch(err){
-            return res.status(401).json({"error": "You can't log in an account that not belongs you"})
+        const id = req.userId
+        const car = await Car.findOne({board, id})
+        console.log(car)
+        return res.json("Logado!")
+    },
+    auth: async(req, res, next)=>{
+        const token = req.headers.token
+        try {
+            const decoded = jwt.verify(token, process.env.SECRET)
+            req.userId = decoded.id
+            return next()
+        } catch (error) {
+            console.log(error)
+            return res.status(401).send({"error": "Acesso não autorizado"})
         }
     }
 }
