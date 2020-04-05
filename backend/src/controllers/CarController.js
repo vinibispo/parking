@@ -28,7 +28,6 @@ module.exports = {
             req.userId = decoded.id
             return next()
         } catch (error) {
-            console.log(error)
             return res.status(401).send({"error": "Acesso não autorizado"})
         }
     }

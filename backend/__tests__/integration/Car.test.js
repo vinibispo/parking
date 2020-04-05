@@ -33,4 +33,13 @@ describe('Authentication', ()=>{
         })
         expect(response.status).toBe(200)
     })
+    it('should be unable to login when user has no token', async ()=>{
+        const car = await Car.create({board: "REC-4898", password: "12345"})
+        const token = 123
+        const response = await request.post('/car/login').set('token', token).send({
+            board: "REC-4898",
+            password: "12345"
+        })
+        expect(response.status).toBe(401)    
+    })
 })
