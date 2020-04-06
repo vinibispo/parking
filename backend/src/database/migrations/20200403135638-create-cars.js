@@ -37,7 +37,7 @@ module.exports = {
 			}
 		})
 	},
-
+	/* eslint no-unused-vars: ["error", { "args": "none" }] */
 	down: (queryInterface, Sequelize) => {
 		return queryInterface.dropTable('cars')
 	}
