@@ -14,6 +14,10 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      status:{
+        type: Sequelize.INTEGER,
+        defaultValue: 1
+      },
       money: {
         type: Sequelize.DECIMAL,
         defaultValue: 200,
