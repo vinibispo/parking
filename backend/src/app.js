@@ -1,6 +1,6 @@
 require('dotenv').config({
-    path: process.env.NODE_ENV === "test" ? '.env.test' : '.env'
-  })
+	path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+})
 const {errors} = require('celebrate')
 const express = require('express')
 
