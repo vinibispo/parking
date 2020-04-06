@@ -11,7 +11,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      pricePerHour: {
+      price_per_hour: {
         type: Sequelize.DECIMAL,
         defaultValue: 10
 
@@ -20,11 +20,11 @@ module.exports = {
         type: Sequelize.DECIMAL,
         defaultValue: 0
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
