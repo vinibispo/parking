@@ -32,5 +32,17 @@ module.exports = {
 			}
 		}
 		return res.status(401).send({error: "Erro ao processar pagamento"})
+	},
+	async request(req, res){
+		const {board, password} = req.body
+		const car = await Car.findOne({where: {board}})
+		if(car){
+			if(car.matchPassword(password)){
+				car.status = 1
+				await car.save()
+				return res.json(car)
+			}
+		}
+		return res.status(401).send({error: "Erro ao processar pedir pra estacionar"})
 	}
 }

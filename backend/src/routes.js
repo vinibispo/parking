@@ -23,7 +23,6 @@ routes.post('/parking', celebrate({
 		total_money: Joi.number()
 	})
 }),ParkingController.create)
-routes.get('/', (req, res)=>{
-res.send({hello: "World"})})
 routes.post('/pay', CarController.pay)
+routes.post('/request', CarController.request)
 module.exports = routes
