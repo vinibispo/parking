@@ -20,5 +20,15 @@ angular.module('dash.controllers', [])
       $state.go('tab.dash')
     }
   }
+  $scope.request = async function () {
+    alert("ASKING")
+    const response = await $http.post('http://localhost:3000/request', {board, password})
+    if(response.status < 400){
+      localStorage.removeItem('user')
+      localStorage.setItem('user', JSON.stringify({...user, ...response.data}))
+      alert('ASKED!')
+      $state.go('tab.dash')
+    }
+  }
 }]);
 
