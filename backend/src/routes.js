@@ -14,11 +14,8 @@ routes.post('/car/login', celebrate({
 	[Segments.BODY]: Joi.object().keys({
 		board: Joi.string().required(),
 		password: Joi.string().required()
-	}),
-	[Segments.HEADERS]: Joi.object({
-		token: Joi.string().required()
-	}).unknown()
-}),CarController.auth, CarController.login)
+	})
+}), CarController.login)
 routes.post('/parking', celebrate({
 	[Segments.BODY]: Joi.object().keys({
 		name: Joi.string().required(),
@@ -26,5 +23,7 @@ routes.post('/parking', celebrate({
 		total_money: Joi.number()
 	})
 }),ParkingController.create)
+routes.get('/', (req, res)=>{
+res.send({hello: "World"})})
 
 module.exports = routes

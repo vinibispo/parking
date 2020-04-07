@@ -1,5 +1,4 @@
 const {Car} = require('../models')
-const jwt = require('jsonwebtoken')
 module.exports = {
 	create: async (req, res)=>{
 		const {board, password} = req.body
@@ -21,14 +20,4 @@ module.exports = {
 		}
 		return res.status(401).send({error: 'Car not found, please register that car before login'})
 	},
-	auth: async(req, res, next)=>{
-		const token = req.headers.token
-		try {
-			const decoded = jwt.verify(token, process.env.SECRET)
-			req.userId = decoded.id
-			return next()
-		} catch (error) {
-			return res.status(401).send({'error': 'Acesso não autorizado'})
-		}
-	}
 }

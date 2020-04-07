@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 module.exports = (sequelize, DataTypes)=>{
 	const Car = sequelize.define('Car', {
 		board: DataTypes.STRING,
@@ -20,9 +19,6 @@ module.exports = (sequelize, DataTypes)=>{
 	})
 	Car.prototype.matchPassword = function(password){
 		return bcrypt.compare(password,this.password_hash)
-	}
-	Car.prototype.generateToken = function(){
-		return jwt.sign({id: this.id}, process.env.SECRET)
 	}
 	return Car
 }
