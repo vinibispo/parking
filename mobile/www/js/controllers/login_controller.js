@@ -9,9 +9,10 @@ angular.module('login.controllers', [])
   }
   $scope.message = ''
   $scope.logar = async function () {
-    const user= JSON.stringify($scope.login)
     const response = await $http.post('http://localhost:3000/car/login', $scope.login)
     if(response.status < 400){
+      let user = {password: $scope.login.password, ...response.data}
+      user= JSON.stringify(user)
       localStorage.setItem('user', user)
       $state.go('tab.dash')
     }

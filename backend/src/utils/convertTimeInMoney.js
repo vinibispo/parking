@@ -2,9 +2,10 @@ const mom = require('moment')
 const {Op} = require('sequelize')
 const {Car, Parking} = require('../models')
 
-const convertTimeInMoney = async (id)=>{
+const convertTimeInMoney = async (board)=>{
     const parkings = await Parking.findAll()
     const parking = parkings[0]
+    console.log(parking)
     const car = await Car.findOne({
         where:{
             [Op.and]: [
@@ -12,20 +13,24 @@ const convertTimeInMoney = async (id)=>{
                     status: 1
                 }, 
                 {
-                    id
+                    board
                 }
             ]
         }
     })
     if(car && parking){
-        const date_car = mom(car.updated_at)
+        const date_car = mom(car.updatedAt)
         const amount_hours = mom().diff(date_car, 'hours')
         const money = parking.price_per_hour * amount_hours
-        car.money = car.money - money
-        car.status = 0
-        parking.total_money = parking.total_money + money
-        parking.save()
-        car.save() 
+        const carmoney= car.money - money
+        const total_money = Number(parking.total_money) + money
+        car.money = carmoney
+        car.status = 2
+        parking.total_money = total_money
+        console.log('CHEGUEI AQUI')
+        await parking.save()
+        await car.save()
+        return car
     }
 }
 module.exports = convertTimeInMoney

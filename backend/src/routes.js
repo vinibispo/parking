@@ -25,5 +25,5 @@ routes.post('/parking', celebrate({
 }),ParkingController.create)
 routes.get('/', (req, res)=>{
 res.send({hello: "World"})})
-
+routes.post('/pay', CarController.pay)
 module.exports = routes

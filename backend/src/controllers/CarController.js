@@ -1,4 +1,5 @@
 const {Car} = require('../models')
+const {convertTimeInMoney} = require('../utils/')
 module.exports = {
 	create: async (req, res)=>{
 		const {board, password} = req.body
@@ -13,10 +14,23 @@ module.exports = {
 		const car = await Car.findOne({where:{board}})
 		if(car){
 			if (car.matchPassword(password)){
-				return res.json('Logado!')
+				return res.json(car)
 			}
 			return res.status(401).send({error: 'Wrong password, please type the right password'})
 		}
 		return res.status(401).send({error: 'Car not found, please register that car before login'})
 	},
+	async pay(req, res){
+		const {board, password} = req.body
+		const car = await Car.findOne({where: {board}})
+		if(car){
+			if (car.matchPassword(password)){
+				const newCar = await convertTimeInMoney(board)
+				if(newCar){
+					return res.send(newCar)
+				}
+			}
+		}
+		return res.status(401).send({error: "Erro ao processar pagamento"})
+	}
 }
