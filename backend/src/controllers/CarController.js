@@ -10,8 +10,7 @@ module.exports = {
 	},
 	login: async (req, res)=>{
 		const {board, password} = req.body
-		const id = req.userId
-		const car = await Car.findOne({where:{board, id}})
+		const car = await Car.findOne({where:{board}})
 		if(car){
 			if (car.matchPassword(password)){
 				return res.json('Logado!')
