@@ -20,9 +20,11 @@ angular.module('dash.controllers', [])
       $state.go('tab.dash')
     }
   }
+  const userDate = moment(user.updatedAt)
+  $scope.date = moment().diff(userDate, "seconds")
   $scope.request = async function () {
     alert("ASKING")
-    const response = await $http.post('http://localhost:3000/request', {board, password})
+    const response = await $http.post('http://localhost:3000/request', {board: user.board, password: user.password})
     if(response.status < 400){
       localStorage.removeItem('user')
       localStorage.setItem('user', JSON.stringify({...user, ...response.data}))
@@ -30,5 +32,6 @@ angular.module('dash.controllers', [])
       $state.go('tab.dash')
     }
   }
+  $scope.count = 0
 }]);
 
