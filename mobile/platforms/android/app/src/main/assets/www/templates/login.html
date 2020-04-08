@@ -1,0 +1,28 @@
+<ion-view view-title="Login" cache-view="false">
+  <ion-content class="padding">
+    <h2>Welcome to The Parking app</h2>
+    <p>
+    Please login in this app to use this app
+    </p>
+    <form>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="board" ng-model="login.board" type="text" class="validate">
+          <label class="active" for="board">Board</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="pass" ng-model="login.password" type="password"class="validate">
+          <label class="active" for="pass">Password</label>
+        </div>
+      </div>
+      <a class="waves-effect waves-light btn" ng-click="logar()">Login</a>
+        <div class="row">
+          {{message}}
+        </div>
+
+
+    </form>
+  </ion-content>
+</ion-view>
