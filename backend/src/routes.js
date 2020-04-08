@@ -1,6 +1,7 @@
 const {Router} = require('express')
 const CarController = require('./controllers/CarController')
 const ParkingController = require('./controllers/ParkingController')
+const AdminController = require('./controllers/AdminController')
 const {Segments, Joi, celebrate} = require('celebrate')
 
 const routes = Router()
@@ -25,4 +26,12 @@ routes.post('/parking', celebrate({
 }),ParkingController.create)
 routes.post('/pay', CarController.pay)
 routes.post('/request', CarController.request)
+
+routes.get('/admin', AdminController.index)
+
+
+
+
+
+
 module.exports = routes
