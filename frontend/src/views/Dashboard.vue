@@ -3,7 +3,9 @@
   <h1>Lista de administradores e seus emails</h1>
   <v-data-table :headers="headers" :items="items" item-key="id" class="elevation-1">
   </v-data-table>
-  <v-btn :class="warning" @click="goToBox">Caixa</v-btn>
+  <v-row align="center">
+    <v-btn color="success" @click="goToBox">Caixa</v-btn>
+  </v-row>
 </div>
 </template>
 
@@ -30,7 +32,7 @@ export default {
         this.items = response.data
       })
     },
-    goToBox(){
+    goToBox () {
       this.$router.push('/box')
     }
   }
@@ -38,7 +40,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   h1{
     text-align: center;
   }
