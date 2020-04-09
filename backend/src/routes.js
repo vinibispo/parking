@@ -2,6 +2,7 @@ const {Router} = require('express')
 const CarController = require('./controllers/CarController')
 const ParkingController = require('./controllers/ParkingController')
 const AdminController = require('./controllers/AdminController')
+const SaidaController = require('./controllers/SaidaController')
 const {Segments, Joi, celebrate} = require('celebrate')
 
 const routes = Router()
@@ -57,4 +58,9 @@ routes.delete('/admin/:id', celebrate({
 	}
 }),AdminController.remove)
 
+
+router.get('/saidas', SaidaController.index)
+routes.post('/saidas', SaidaController.create)
+routes.put('/saidas/:id', SaidaController.update)
+routes.delete('/saidas/:id', SaidaController.remove)
 module.exports = routes
