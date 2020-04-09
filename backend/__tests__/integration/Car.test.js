@@ -19,7 +19,7 @@ describe('Authentication', ()=>{
 	})
 	it('should be able to login when user has valid credentials', async ()=>{
 		const car = await Car.create({board: 'REC-4898', password: '12345'})
-		const response = await request.post('/car/login').set('token', token).send({
+		const response = await request.post('/car/login').send({
 			board: 'REC-4898',
 			password: '12345'
 		})

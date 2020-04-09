@@ -6,7 +6,6 @@ module.exports = {
 		const car = await Car.create({board, password})
 		return res.status(201).json({
 			car,
-			token: car.generateToken()
 		})
 	},
 	login: async (req, res)=>{
@@ -14,7 +13,7 @@ module.exports = {
 		const car = await Car.findOne({where:{board}})
 		if(car){
 			if (car.matchPassword(password)){
-				return res.json(car)
+				return res.status(200).send(car)
 			}
 			return res.status(401).send({error: 'Wrong password, please type the right password'})
 		}
@@ -31,7 +30,7 @@ module.exports = {
 				}
 			}
 		}
-		return res.status(401).send({error: "Erro ao processar pagamento"})
+		return res.status(401).send({error: 'Erro ao processar pagamento'})
 	},
 	async request(req, res){
 		const {board, password} = req.body
@@ -43,6 +42,6 @@ module.exports = {
 				return res.json(car)
 			}
 		}
-		return res.status(401).send({error: "Erro ao processar pedir pra estacionar"})
+		return res.status(401).send({error: 'Erro ao processar pedir pra estacionar'})
 	}
 }

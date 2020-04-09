@@ -28,10 +28,33 @@ routes.post('/pay', CarController.pay)
 routes.post('/request', CarController.request)
 
 routes.get('/admin', AdminController.index)
-
-
-
-
-
+routes.post('/admin', celebrate({
+	[Segments.BODY]:{
+		name: Joi.string().required(),
+		email: Joi.string().required(),
+		pass: Joi.string().required()
+	}
+}), AdminController.create)
+routes.post('/admin/login', celebrate({
+	[Segments.BODY]:{
+		email: Joi.string().required(),
+		pass: Joi.string().required()
+	}
+}),AdminController.login)
+routes.put('/admin/:id', celebrate({
+	[Segments.BODY]:{
+		name: Joi.string(),
+		email: Joi.string(),
+		pass: Joi.string()
+	},
+	[Segments.PARAMS]:{
+		id: Joi.number().required()
+	}
+}),AdminController.update)
+routes.delete('/admin/:id', celebrate({
+	[Segments.PARAMS]:{
+		id: Joi.number().required()
+	}
+}),AdminController.remove)
 
 module.exports = routes
