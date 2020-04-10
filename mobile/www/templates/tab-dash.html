@@ -1,0 +1,25 @@
+<ion-view view-title="Dashboard" cache-view="false">
+  <ion-content class="padding" style="background: #0000FF;">
+    <h2 style="color: #FFF;">Welcome to The Parking app</h2>
+    <p style="color: #FFF; font-size: 18px;">In this app you can request a parking for your car or pay the parking</p>
+    <a class="waves-effect waves-light btn btn-medium white" style="color: #000000;" ng-click="sair()">
+      Sair
+    </a>
+    <a class="waves-effect waves-light btn btn-medium green" ng-click="pay()" ng-if="status == 1">
+      Pagar
+    </a>
+    <a class="waves-effect waves-light btn btn-medium light-blue" ng-click="request()" ng-if="status == 2">
+      Pedir
+    </a>
+    <div class="row" ng-if="status == 1">
+      <div class="col s12 m6">
+        <div class="card green darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Timer</span>
+            {{hours}}:{{minutes}}:{{seconds}}            
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
