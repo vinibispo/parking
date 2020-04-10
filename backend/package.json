@@ -5,5 +5,35 @@
   "main": "In this repository contains frontend, backend and mobile for a parking system requested by my mentor",
   "repository": "https://github.com/vinibispo/parking",
   "author": "Vinícius Bispo",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "celebrate": "^12.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.0.0",
+    "sequelize": "^5.21.6"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/sequelize": "^4.28.8",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "jest": "^25.2.7",
+    "nodemon": "^2.0.2",
+    "sequelize-cli": "^5.5.1",
+    "sqlite3": "^4.1.1",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "pretest": "NODE_ENV=test sequelize db:migrate",
+    "test": "NODE_ENV=test jest",
+    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
+    "dev": "nodemon src/server.js --ignore __tests__",
+    "start": "node src/server.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  }
 }
