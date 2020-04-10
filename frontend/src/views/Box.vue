@@ -1,6 +1,7 @@
 <template>
   <div class="box">
-    <h1>Box</h1>
+    <h1>Fluxo de Caixa</h1>
+    <span :class="{red: isActive}">Total: {{total | currency}}</span>
     <vue-apex-charts width="500" label="labels" :options="chartOptions" :series="series"></vue-apex-charts>
     <v-row justify="space-around">
       <v-btn color="primary" @click="goToAdmins">Admins</v-btn>
@@ -13,15 +14,34 @@
 import api from '../services/api'
 import VueApexCharts from 'vue-apexcharts'
 export default {
+  mounted () {
+    this.loadData()
+  },
+  filters: {
+    currency (value) {
+      return `${Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value)}`
+    }
+  },
   data () {
     return {
-      series: [1, 2],
+      series: [],
       chartOptions: {
         chart: {
           width: 500,
           type: 'pie'
         },
-        labels: ['Saída', 'Entrada']
+        labels: ['Saída', 'Entrada'],
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
       }
     }
   },
@@ -30,23 +50,40 @@ export default {
       this.$router.push('/dash')
     },
     goToSaida () {
-      this.$router.push('/saida')
+      this.$router.push('/saidas')
     },
     loadData () {
-      api.get('/saida').then((response) => {
-        console.log(response.data)
-        // this.series = response.data
+      api.get('/entradaesaida').then((response) => {
+        this.series = response.data
       })
     }
   },
   components: {
     VueApexCharts
+  },
+  computed: {
+    total () {
+      return this.series[1] - this.series[0]
+    },
+    isActive () {
+      return this.total < 0
+    }
   }
 }
 </script>
 
 <style scoped>
-  h1{
+  h1 {
     text-align: center;
+    color: #008efa;
+  }
+  span {
+    width: 30px;
+    height: 30px;
+    color: #54e496;
+    margin: 70px;
+  }
+  .red {
+    color: red;
   }
 </style>

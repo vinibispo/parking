@@ -28,7 +28,6 @@ export default {
   methods: {
     loadData: function () {
       api.get('/admin').then((response) => {
-        console.log(response.data)
         this.items = response.data
       })
     },

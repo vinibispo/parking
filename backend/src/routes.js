@@ -59,8 +59,10 @@ routes.delete('/admin/:id', celebrate({
 }),AdminController.remove)
 
 
-router.get('/saidas', SaidaController.index)
+routes.get('/saidas', SaidaController.index)
+routes.get('/saidas/:id', SaidaController.one)
 routes.post('/saidas', SaidaController.create)
 routes.put('/saidas/:id', SaidaController.update)
 routes.delete('/saidas/:id', SaidaController.remove)
+routes.get('/entradaesaida', SaidaController.entradaesaida)
 module.exports = routes
